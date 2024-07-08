@@ -50,31 +50,6 @@ describe('Event in cluster', function() {
       'worker 2 { index: 1 }'
     ]
 
-    const result = [
-      "master { index: 'master' }",
-      'master { index: 0 }',
-      'worker 0 { index: 0 }',
-      'master { index: 1 }',
-      "worker 0 { index: 'master' }",
-      'worker 0 { index: 1 }',
-      'worker 1 { index: 1 }',
-      "worker 1 { index: 'master' }",
-      'worker 1 { index: 0 }',
-      'master { index: 2 }',
-      'worker 0 { index: 2 }',
-      'worker 1 { index: 2 }',
-      'worker 2 { index: 2 }',
-      "worker 2 { index: 'master' }",
-      'worker 2 { index: 0 }',
-      'worker 2 { index: 1 }',
-      'master { index: 3 }',
-      'worker 3 { index: 3 }',
-      "worker 3 { index: 'master' }",
-      'worker 3 { index: 0 }',
-      'worker 3 { index: 1 }',
-      'worker 3 { index: 2 }'
-    ]
-
     const success = result.length === extecpted.length && result.every(i => extecpted.indexOf(i) !== -1)
     assert(success, 'All events should arrive to all processes')
   })
