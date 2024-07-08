@@ -95,4 +95,3 @@ class ClusterEventEmitter extends events_1.default {
 }
 exports.ClusterEventEmitter = ClusterEventEmitter;
 ClusterEventEmitter.initialized = false;
-//# sourceMappingURL=ClusterEventEmitter.js.map
