@@ -14,6 +14,7 @@ const id = object => {
 
 export class ClusterEventEmitter extends EventEmitter {
   protected id: string
+  protected static initialized = false
   constructor(identifier?: string) {
     super()
     this.initialize()
@@ -25,7 +26,7 @@ export class ClusterEventEmitter extends EventEmitter {
   }
 
   static initializeMaster() {
-    if (!cluster.isWorker) {
+    if (!cluster.isWorker && !ClusterEventEmitter.initialized) {
       cluster.on('message', async (worker, message) => {
         if (message['INTERNAL_MESSAGE_BROADCAST'] === INTERNAL_MESSAGE_BROADCAST) {
           Object.keys(cluster.workers).forEach(workerId => {
@@ -37,6 +38,7 @@ export class ClusterEventEmitter extends EventEmitter {
           })
         }
       })
+      ClusterEventEmitter.initialized = true
     }
   }
 

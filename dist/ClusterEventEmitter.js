@@ -36,7 +36,7 @@ class ClusterEventEmitter extends events_1.default {
         }
     }
     static initializeMaster() {
-        if (!cluster_1.default.isWorker) {
+        if (!cluster_1.default.isWorker && !ClusterEventEmitter.initialized) {
             cluster_1.default.on('message', (worker, message) => __awaiter(this, void 0, void 0, function* () {
                 if (message['INTERNAL_MESSAGE_BROADCAST'] === exports.INTERNAL_MESSAGE_BROADCAST) {
                     Object.keys(cluster_1.default.workers).forEach(workerId => {
@@ -47,6 +47,7 @@ class ClusterEventEmitter extends events_1.default {
                     });
                 }
             }));
+            ClusterEventEmitter.initialized = true;
         }
     }
     initialize() {
@@ -93,3 +94,4 @@ class ClusterEventEmitter extends events_1.default {
     }
 }
 exports.ClusterEventEmitter = ClusterEventEmitter;
+ClusterEventEmitter.initialized = false;
