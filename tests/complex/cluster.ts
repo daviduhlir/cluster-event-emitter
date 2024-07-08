@@ -24,6 +24,6 @@ const i = new Test()
 
     setTimeout(() => {
       process.exit()
-    }, 20)
+    }, 100)
   }
 })()
