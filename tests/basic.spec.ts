@@ -50,6 +50,12 @@ describe('Event in cluster', function() {
       'worker 2 { index: 1 }'
     ]
 
-    assert(result.length === extecpted.length && result.every(i => extecpted.indexOf(i) !== -1), 'All events should arrive to all processes')
+    const success = result.length === extecpted.length && result.every(i => extecpted.indexOf(i) !== -1)
+
+    if (!success) {
+      console.log(result)
+    }
+
+    assert(success, 'All events should arrive to all processes')
   })
 })
