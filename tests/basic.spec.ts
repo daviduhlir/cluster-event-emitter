@@ -1,5 +1,4 @@
 import { assert } from 'chai'
-import { ClusterEventEmitter } from '../dist'
 import { spawn } from 'child_process'
 
 /**
