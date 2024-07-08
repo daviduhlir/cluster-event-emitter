@@ -1,0 +1,46 @@
+{
+  "name": "@david.uhlir/cluster-event-emitter",
+  "version": "1.0.0",
+  "description": "Cluster event emitter for node.js apllications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "prettier-check": "prettier-check --config .prettierrc.json 'lib/**/*.ts'",
+    "prettier-format": "prettier --config .prettierrc.json 'lib/**/*.ts' --write",
+    "test": "npm run build && npm run prettier-check && ts-mocha --timeout 10000 --type-check -p ./tsconfig.json tests/**/*.spec.ts",
+    "build:release": "rimraf ./dist && tsc --p tsconfig.release.json",
+    "test:release": "npm run prettier-check && ts-mocha --timeout 10000 --type-check -p ./tsconfig.json tests/**/*.spec.ts",
+    "release": "./scripts/release.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daviduhlir/cluster-event-emitter.git"
+  },
+  "keywords": [
+    "promise",
+    "async",
+    "cluster",
+    "workers",
+    "node",
+    "eventsr",
+    "ipc",
+    "util"
+  ],
+  "author": "David Uhlíř",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^20.14.10",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "prettier": "^2.6.2",
+    "prettier-check": "^2.0.0",
+    "rimraf": "^2.6.2",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": "^12.17.0 || >=13.14.0"
+  }
+}
