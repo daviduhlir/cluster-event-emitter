@@ -1,6 +1,6 @@
 {
   "name": "@david.uhlir/cluster-event-emitter",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Cluster event emitter for node.js apllications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
