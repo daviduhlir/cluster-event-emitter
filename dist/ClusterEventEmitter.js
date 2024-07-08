@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -37,7 +28,7 @@ class ClusterEventEmitter extends events_1.default {
     }
     static initializeMaster() {
         if (!cluster_1.default.isWorker) {
-            cluster_1.default.on('message', (worker, message) => __awaiter(this, void 0, void 0, function* () {
+            cluster_1.default.on('message', async (worker, message) => {
                 if (message['INTERNAL_MESSAGE_BROADCAST'] === exports.INTERNAL_MESSAGE_BROADCAST) {
                     Object.keys(cluster_1.default.workers).forEach(workerId => {
                         const remoteWorker = cluster_1.default.workers[workerId];
@@ -46,28 +37,28 @@ class ClusterEventEmitter extends events_1.default {
                         }
                     });
                 }
-            }));
+            });
         }
     }
     initialize() {
         if (cluster_1.default.isWorker) {
-            process.on('message', (message) => __awaiter(this, void 0, void 0, function* () {
+            process.on('message', async (message) => {
                 if (typeof message === 'object' && !!message && message['INTERNAL_MESSAGE_BROADCAST'] === exports.INTERNAL_MESSAGE_BROADCAST) {
                     if (message.id === this.id) {
                         this.handleInternalEmit(message.eventName, ...message.args);
                     }
                 }
-            }));
+            });
         }
         else {
             ClusterEventEmitter.initializeMaster();
-            cluster_1.default.on('message', (worker, message) => __awaiter(this, void 0, void 0, function* () {
+            cluster_1.default.on('message', async (worker, message) => {
                 if (typeof message === 'object' && !!message && message['INTERNAL_MESSAGE_BROADCAST'] === exports.INTERNAL_MESSAGE_BROADCAST) {
                     if (message.id === this.id) {
                         this.handleInternalEmit(message.eventName, ...message.args);
                     }
                 }
-            }));
+            });
         }
     }
     emit(eventName, ...args) {
@@ -93,3 +84,4 @@ class ClusterEventEmitter extends events_1.default {
     }
 }
 exports.ClusterEventEmitter = ClusterEventEmitter;
+//# sourceMappingURL=ClusterEventEmitter.js.map

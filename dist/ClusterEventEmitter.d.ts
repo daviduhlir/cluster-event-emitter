@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import EventEmitter from 'events';
 export declare const INTERNAL_MESSAGE_BROADCAST = "CLUSTER-EVENT-EMITTER-INTERNAL-MESSAGE-BROADCAST";
 export declare class ClusterEventEmitter extends EventEmitter {

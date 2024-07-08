@@ -31,14 +31,14 @@
   "license": "ISC",
   "devDependencies": {
     "@types/mocha": "^10.0.0",
-    "@types/node": "^20.14.10",
+    "@types/node": "^18.11.9",
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "prettier": "^2.6.2",
     "prettier-check": "^2.0.0",
     "rimraf": "^2.6.2",
     "ts-mocha": "^10.0.0",
-    "typescript": "^5.5.3"
+    "typescript": "^3.8.3"
   },
   "engines": {
     "node": "^12.17.0 || >=13.14.0"
